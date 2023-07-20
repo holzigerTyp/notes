@@ -320,6 +320,59 @@ app.listen(5678, () => {
 });
 ```
 
+### Writing tests
+
+```javascript
+import request from 'supertest'
+import app from '../src/app'
+
+describe('express', () => {
+  it('should return 200 at /', async () => {
+    const response = await request(app).get('/')
+    expect(response.status).toBe(200)
+  })
+})
+```
+
+## MongoDB (using `mongodb-memory-server`)
+
+**Documentation:** [https://nodkz.github.io/mongodb-memory-server/](https://nodkz.github.io/mongodb-memory-server/docs/guides/quick-start-guide)
+**Repository:** [https://github.com/nodkz/mongodb-memory-server](https://github.com/nodkz/mongodb-memory-server)
+
+### Preparation
+
+**Install dependency**
+```bash
+npm install --save-dev mongodb-memory-server
+```
+```bash
+yarn add -D mongodb-memory-server
+```
+
+**Add global setup**
+```javascript
+import { MongoMemoryServer } from 'mongodb-memory-server'
+
+export default async () => {
+  const mongoServer = await MongoMemoryServer.create()
+  const mongoUri = mongoServer.getUri('rbac')
+
+  // Save the mongoUri as a global variable, so that it can be accessed in test files.
+  process.env.__MONGO_URI__ = mongoUri
+
+  // Save the mongoServer as a global variable, so that it can be accessed in globalTeardown.
+  global.__MONGO_SERVER__ = mongoServer
+
+}
+```
+
+**Add global teardown**
+```javascript
+export default async () => {
+  const mongoServer = global.__MONGO_SERVER__
+  await mongoServer.stop()
+}
+```
 
 # Sources
 
