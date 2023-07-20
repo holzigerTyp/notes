@@ -2,7 +2,7 @@
 
 > How can you implement testing into your existing JavaScript application?
 
-## Table of Contents
+# Table of Contents
 
 - [Setup](#setup)
   - [Required files](#required-files)
@@ -10,10 +10,12 @@
   - [Configuration](#configuration)
 - [Generic usage](#generic-usage)
 - [Testing applications](#testing-applications)
+  - [ExpressJS](#expressjs)
+- [Sources](#sources)
 
-## Setup
+# Setup
 
-### Required files
+## Required files
 
 ```
 tests/
@@ -23,7 +25,7 @@ babel.config.cjs
 jest.config.js
 ```
 
-### Install dependencies
+## Install dependencies
 
 **NPM**
 ```bash
@@ -37,7 +39,7 @@ yarn add -D jest babel-jest @babel/core @babel/preset-env
 
 > ℹ️ The babel integration is required in order to make imports in tests work.
 
-### Configuration
+## Configuration
 
 **package.json**: Make sure to add the script used for testing
 ```json
@@ -271,7 +273,7 @@ export default {
 
 > If you are using exactly this configuration, the `tests` directory will contain all your test files. Of course, you can modify the configuration as you like.
 
-## Generic usage
+# Generic usage
 
 1. Create a test file in the following schema `<descriptor>.test.js`
 2. Add your tests, e. g. this example:
@@ -284,14 +286,14 @@ export default {
    ```
 3. Run the tests using `npm test` / `yarn test`
 
-## Testing applications
+# Testing applications
 
-### ExpressJS
+## ExpressJS
 
-#### Configuration
+### Configuration
 - Make sure to use the CLI argument `--runInBand`, if you are working with tests that depend on each other.
 
-#### Preparation
+### Preparation
 
 **Separate your app and server**
 
@@ -319,6 +321,6 @@ app.listen(5678, () => {
 ```
 
 
-## Sources
+# Sources
 
 - [How to test Express.js with Jest and Supertest, Albert Gao](https://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/)
