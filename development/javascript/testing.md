@@ -37,11 +37,17 @@ npm install --save-dev jest babel-jest @babel/core @babel/preset-env
 yarn add -D jest babel-jest @babel/core @babel/preset-env
 ```
 
-> ℹ️ The babel integration is required in order to make imports in tests work.
+> ℹ️ The babel integration is required in order to make imports in tests work (in my case).
 
 ## Configuration
 
-**package.json**: Make sure to add the script used for testing
+<details>
+<summary>package.json</summary>
+
+> Make sure to add the script used for testing.
+>
+> To get more informations about the CLI arguments, take a look [here](https://jestjs.io/docs/cli). The script added above is configured for the testing of an express application.
+
 ```json
 {
   ...
@@ -53,21 +59,35 @@ yarn add -D jest babel-jest @babel/core @babel/preset-env
 }
 ```
 
-> To get more informations about the CLI arguments, take a look [here](https://jestjs.io/docs/cli). The script added above is configured for the testing of an express application.
+</details>
 
-**tests/globalSetup.js** and **tests/globalTeardown.js**: Insert placeholder, files can be used to do things before and after all tests.
+<details>
+<summary>tests/globalSetup.js and tests/globalTeardown.js</summary>
+
+> Insert placeholder, files can be used to do things before and after all tests.
+
 ```javascript
 export default async () => {}
 ```
 
-**babel.config.cjs**:
+</details>
+
+<details>
+<summary>babel.config.cjs</summary>
+
 ```javascript
 module.exports = {
   presets: [['@babel/preset-env', {targets: {node: 'current'}}]],
 };
 ```
 
-**jest.config.js**:
+</details>
+
+<details>
+<summary>jest.config.js</summary>
+
+> If you are using exactly this configuration, the `tests` directory will contain all your test files. Of course, you can modify the configuration as you like.
+
 ```javascript
 /*
  * For a detailed explanation regarding each configuration property and type check, visit:
@@ -271,7 +291,7 @@ export default {
 }
 ```
 
-> If you are using exactly this configuration, the `tests` directory will contain all your test files. Of course, you can modify the configuration as you like.
+</details>
 
 # Generic usage
 
@@ -373,11 +393,29 @@ export default async () => {
 }
 ```
 
+### Usage
+
+Use the environment variable that contains the MongoDB URI to connect to the MongoDB.
+
+**mongodb**
+```javascript
+const mongoUri = process.env.__MONGO_URI__ ? process.env.__MONGO_URI__ : ''
+const client = new MongoClient(mongoUri);
+```
+
+**mongoose**
+```javascript
+const mongoUri = process.env.__MONGO_URI__ ? process.env.__MONGO_URI__ : ''
+await mongoose.connect(mongoUri)
+```
+
 # Sources
 
-- Jest: [Repository](https://github.com/jestjs/jest) / [Documentation](https://jestjs.io/)
-- Babel: [Documentation](https://babeljs.io/) / [Integration](https://jestjs.io/docs/28.x/getting-started#using-babel)
+- jest: [Repository](https://github.com/jestjs/jest) / [Documentation](https://jestjs.io/)
+- babel: [Repository](https://github.com/babel/babel) / [Documentation](https://babeljs.io/) / [Integration](https://jestjs.io/docs/28.x/getting-started#using-babel)
 - supertest: [Repository](https://github.com/ladjs/supertest)
+- mongodb: [Repository](https://github.com/mongodb/node-mongodb-native/) / [Documentation](https://www.mongodb.com/docs/drivers/node/current/)
+- mongoose: [Repository](https://github.com/Automattic/mongoose) / [Documentation](https://mongoosejs.com/)
 - mongodb-memory-server: [Repository](https://github.com/nodkz/mongodb-memory-server) / [Documentation](https://nodkz.github.io/mongodb-memory-server/)
 
 **Blog posts**
