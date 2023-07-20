@@ -299,7 +299,7 @@ export default {
 
 > Testing requires that the app does not listen to any ports. The "listening" is handled by the testing framework.
 
-Example `server.js`
+Example `app.js`
 ```javascript
 const express = require("express");
 const app = express();
@@ -311,7 +311,7 @@ app.get("/", (req, res) => {
 module.exports = app;
 ```
 
-Example `app.js`
+Example `server.js`
 ```javascript
 const app = require("./app");
 
@@ -336,8 +336,7 @@ describe('express', () => {
 
 ## MongoDB (using `mongodb-memory-server`)
 
-**Documentation:** [https://nodkz.github.io/mongodb-memory-server/](https://nodkz.github.io/mongodb-memory-server/docs/guides/quick-start-guide)
-**Repository:** [https://github.com/nodkz/mongodb-memory-server](https://github.com/nodkz/mongodb-memory-server)
+> To find out more about this library, take a look at the documentation and repository found [here](#sources)
 
 ### Preparation
 
@@ -355,7 +354,7 @@ import { MongoMemoryServer } from 'mongodb-memory-server'
 
 export default async () => {
   const mongoServer = await MongoMemoryServer.create()
-  const mongoUri = mongoServer.getUri('rbac')
+  const mongoUri = mongoServer.getUri()
 
   // Save the mongoUri as a global variable, so that it can be accessed in test files.
   process.env.__MONGO_URI__ = mongoUri
@@ -376,4 +375,10 @@ export default async () => {
 
 # Sources
 
+- Jest: [Repository](https://github.com/jestjs/jest) / [Documentation](https://jestjs.io/)
+- Babel: [Documentation](https://babeljs.io/) / [Integration](https://jestjs.io/docs/28.x/getting-started#using-babel)
+- supertest: [Repository](https://github.com/ladjs/supertest)
+- mongodb-memory-server: [Repository](https://github.com/nodkz/mongodb-memory-server) / [Documentation](https://nodkz.github.io/mongodb-memory-server/)
+
+**Blog posts**
 - [How to test Express.js with Jest and Supertest, Albert Gao](https://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/)
