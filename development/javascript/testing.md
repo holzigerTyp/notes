@@ -5,6 +5,11 @@
 ## Table of Contents
 
 - [Setup](#setup)
+  - [Required files](#required-files)
+  - [Install dependencies](#install-dependencies)
+  - [Configuration](#configuration)
+- [Generic usage](#generic-usage)
+- [Testing applications](#testing-applications)
 
 ## Setup
 
@@ -278,3 +283,42 @@ export default {
    })
    ```
 3. Run the tests using `npm test` / `yarn test`
+
+## Testing applications
+
+### ExpressJS
+
+#### Configuration
+- Make sure to use the CLI argument `--runInBand`, if you are working with tests that depend on each other.
+
+#### Preparation
+
+**Separate your app and server**
+
+> Testing requires that the app does not listen to any ports. The "listening" is handled by the testing framework.
+
+Example `server.js`
+```javascript
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+  res.status(200).send("Hello World!");
+});
+
+module.exports = app;
+```
+
+Example `app.js`
+```javascript
+const app = require("./app");
+
+app.listen(5678, () => {
+  console.log("Example app listening on port 5678!");
+});
+```
+
+
+## Sources
+
+- [How to test Express.js with Jest and Supertest, Albert Gao](https://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/)
