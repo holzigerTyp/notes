@@ -308,12 +308,20 @@ export default {
 
 # Testing applications
 
-## ExpressJS
+## ExpressJS (using `supertest`)
 
 ### Configuration
 - Make sure to use the CLI argument `--runInBand`, if you are working with tests that depend on each other.
 
 ### Preparation
+
+**Install dependency**
+```bash
+npm install --save-dev supertest
+```
+```bash
+yarn add -D supertest
+```
 
 **Separate your app and server**
 
