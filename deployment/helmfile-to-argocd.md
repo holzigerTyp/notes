@@ -4,6 +4,11 @@
 
 # Table of Contents
 
+- [Base idea](#base-idea)
+- [Current folder structure (using helmfile)](#current-folder-structure-using-helmfile)
+- [Target folder structure](#target-folder-structure)
+- [Approaching ArgoCD](#approaching-argocd)
+  - [Creating applications](#creating-applications)
 
 # Base idea
 
