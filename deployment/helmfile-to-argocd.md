@@ -9,6 +9,13 @@
 - [Target folder structure](#target-folder-structure)
 - [Approaching ArgoCD](#approaching-argocd)
   - [Creating applications](#creating-applications)
+  - [Separate helm chart](#separate-helm-chart)
+  - [Setup ArgoCD project](#setup-argocd-project)
+    - [Creation](#creation)
+    - [Destinations](#destinations)
+    - [Cluster Resource Allow List](#cluster-resource-allow-list)
+  - [Add repository to ArgoCD](#add-repository-to-argocd)
+
 
 # Base idea
 
