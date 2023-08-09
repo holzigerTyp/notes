@@ -237,4 +237,23 @@ In ArgoCD you can use the name of the repository as a username and the access to
 
 After you have configured your repository make sure that after you have clicked `CONNECT` your repository should have the connection status `✅ Successful`.
 
+## Setup ArgoCD root application (using UI)
 
+1. In the `Applications` view click on `+ NEW APP`
+2. As a name choose the name of your application or something like `example-root`
+3. Select your created project from the previous steps
+4. Scroll down to `SOURCE`
+5. Select your repository URL
+6. Change the revision if you are working on a branch
+7. Set `apps` as the target path
+8. Choose your destination including the cluster and namespace. The namespace should be the namespace of your entire deployment.
+9. In the `HELM` section under `PARAMETERS` set the value of `spec.environments` to your target environment (either `dev` or `prod` depending on the name of your values files)
+10. Click on `CREATE`
+
+## Finish up
+
+After you have successfully created the root application, take a look at the `APP DIFF`. Make sure that it includes your applications in the way you want them. Also check if the path of the values files are correct.
+
+If everything is okay, apply the changes by clicking `SYNC` and `SYNCHRONIZE`. After your application reached the `Healthy` state, navigate to the other applications and check their states. Also sync each of your subapps.
+
+> 🎉 Congrats, you have transformed your helmfile deployment to an ArgoCD deployment.
