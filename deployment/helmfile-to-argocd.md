@@ -51,20 +51,20 @@ This documentation assumes the following:
 # Target folder structure
 
 ```
-├── apps
+├── apps (ArgoCD application definitions)
 │   ├── Chart.yaml
 │   ├── templates
 │   │   ├── frontend.yaml
 │   │   └── backend.yaml
 │   └── values.yaml
-├── frontend
+├── frontend (Frontend part of the application)
 │   ├── Chart.yaml
 │   ├── templates
 │   │   ├── deployment-frontend.yaml
 │   │   ├── ingress.yaml
 │   │   └── service-frontend.yaml
 │   └── values.yaml
-├── backend
+├── backend (Backend part of the application)
 │   ├── Chart.yaml
 │   ├── templates
 │   │   ├── deployment-backend.yaml
@@ -236,7 +236,7 @@ Using GitLab you can create an access token for the project and use it as the pa
 1. Navigate to your repository
 2. Go to `Settings` > `Access Tokens` in your navigation
 3. Add a name and expiration date for your token
-4. Select `Maintainer` as the role
+4. Select `Developer` as the role
 5. Mark the checkbox for the `read_repository` scope
 6. Click on `Create project access token`
 
