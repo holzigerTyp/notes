@@ -10,6 +10,7 @@
 - [Approaching ArgoCD](#approaching-argocd)
   - [Creating applications](#creating-applications)
   - [Separate helm chart](#separate-helm-chart)
+    - [Handling secrets](#handling-secrets)
   - [Setup ArgoCD project](#setup-argocd-project)
     - [Creation](#creation)
     - [Destinations](#destinations)
@@ -173,6 +174,13 @@ spec:
 If you have started this with one single helm chart you now have to separate your helm chart into charts for the different parts. Your result should look like the [backend and frontend of the target folder structure](#target-folder-structure).
 
 > ⚠️ While refactoring be aware of that we will be using one single values file for the entire deployment so make sure to use explicit / unique paths for your values.
+
+### Handling Secrets
+
+Handling secrets with ArgoCD deployments can be quite challenging at first sight.
+The first solution would involve creating your secrets manually and just using the reference in the value files.
+
+You can also take a look at the [argocd-vault-plugin](https://github.com/argoproj-labs/argocd-vault-plugin) that integrates [HashiCorp Vault](https://www.hashicorp.com/products/vault) into your workflow.
 
 ## Setup ArgoCD project
 
