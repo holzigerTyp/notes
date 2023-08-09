@@ -100,6 +100,8 @@ spec:
   source:
     # Replace the repoURL to point to your repository
     repoURL: https://git.example.com/example/kubernetes.git
+    # If you are currently working on a branch, provide your branch name here
+    # Make sure to change this back to 'HEAD' if you like to always get the newest changes.
     targetRevision: HEAD
 ```
 
@@ -156,4 +158,76 @@ spec:
 ```
 
 </details>
+
+## Separate helm chart
+
+If you have started this with one single helm chart you now have to separate your helm chart into charts for the different parts. Your result should look like the [backend and frontend of the target folder structure](#target-folder-structure).
+
+> ⚠️ While refactoring be aware of that we will be using one single values file for the entire deployment so make sure to use explicit / unique paths for your values.
+
+## Setup ArgoCD project
+
+### Creation
+
+1. Go to your ArgoCD instance and sign in.
+2. Navigate to `Settings` > `Projects`
+3. Click on `+ NEW PROJECT`
+4. Enter a proper name for the project e.g. your application name
+5. Add a description if you like to
+6. Create your application by hitting the `CREATE` button
+
+Now you should see the summary of your created project.
+
+### Destinations
+
+The destinations restrict the possible clusters and namespaces your project is able to deploy to.
+
+In my case I want to be able to deploy the application to whereever I like to. Of course you can restrict the access here if you want to.
+
+1. Scroll down to `DESTINATIONS`
+2. Hit `EDIT`
+3. Add a new destination by clicking on `ADD DESTINATION`
+4. For now I will remove the asterisk in the `Name` column
+5. Click on `SAVE`
+
+### Cluster Resource Allow List
+
+The information button right next to the title says: *Cluster-scoped K8s API Groups and Kinds which are permitted to be deployed*
+
+To make sure that all our resources can be deployed in the cluster follow these steps:
+
+1. Scroll down to `CLUSTER RESOURCE ALLOW LIST`
+2. Click `EDIT`
+3. Then add a resource to the `CLUSTER RESOURCE ALLOW LIST` by pressing `ADD RESOURCE`
+4. Because I do not want to restrict the resources that can be deployed in any way I will leave it like this. Change this if you like to. 
+5. Hit `SAVE`
+
+## Add repository to ArgoCD
+
+> ⚠️ In order to complete this step you have to make sure that your cluster is able to reach your Git instance.
+
+1. Navigate to `Settings` > `Repositories`
+2. Then press `+ CONNECT REPO`
+3. Select your preferred connection method
+4. Fill out the form
+
+> ℹ️ Make sure to select the project you have created in the steps above.
+
+While using `HTTPS` as a connection method, authentication will very likely be required. 
+Using GitLab you can create an access token for the project and use it as the password following these steps:
+
+1. Navigate to your repository
+2. Go to `Settings` > `Access Tokens` in your navigation
+3. Add a name and expiration date for your token
+4. Select `Maintainer` as the role
+5. Mark the checkbox for the `read_repository` scope
+6. Click on `Create project access token`
+
+At the top the access token is now displayed. Make sure to copy it and store it in a secure way.
+In ArgoCD you can use the name of the repository as a username and the access token as the password.
+
+> ⚠️ This is your only chance of copying / viewing this token.
+
+After you have configured your repository make sure that after you have clicked `CONNECT` your repository should have the connection status `✅ Successful`.
+
 
