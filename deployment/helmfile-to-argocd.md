@@ -15,6 +15,8 @@
     - [Destinations](#destinations)
     - [Cluster Resource Allow List](#cluster-resource-allow-list)
   - [Add repository to ArgoCD](#add-repository-to-argocd)
+  - [Setup ArgoCD root application (using UI)](#setup-argocd-root-application-using-ui)
+  - [Finish up](#finish-up)
 
 
 # Base idea
