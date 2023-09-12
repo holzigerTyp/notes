@@ -4,10 +4,10 @@
 
 ## Table of Contents
 
-- [Base concept]()
-- [Examples]()
-  - [Only on tags]()
-  - [Only on default branch]()
+- [Base concept](#base-concept)
+- [Examples](#examples)
+  - [Only on tags](#only-on-tags)
+  - [Only on default branch](#only-on-default-branch)
 
 ## Base concept
 
